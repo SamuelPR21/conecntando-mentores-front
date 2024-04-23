@@ -7,14 +7,11 @@ export default function Home() {
   return (
     <main className=" min-h-screen ">
 
-      <div className="w-full max-[300px]">
-        <Image
-          alt="Banner"
-          src="/banner.jpg"
-          height={300}
-          width={10000}
-          className="w-full max-h-[300px] object-cover"       
-        />
+      <div className="w-full min-h-[300px] flex 
+      items-center bg-hero-pattern object-cover">
+        <h1 className="text-8xl p-12 font-bold bg-background opacity-90">
+          LA USQUITO AYUDA
+        </h1>
       </div>
 
       <div className="mt-14 flex flex-col items-center justify-center px-8">

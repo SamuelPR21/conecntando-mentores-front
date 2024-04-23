@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import {
     Card,
     CardContent,
@@ -8,45 +9,27 @@ import {
     CardTitle,
   } from "@/components/ui/card"
 
+  import {cardsData} from "@/lib/data"
+
 const News = () => {
   return (
-    <div className='flex gap-10'>
-        <Card>
-            <CardHeader>
-                <CardTitle>Card Title masonaspasdknasdoka sdopasdjaospdinas </CardTitle>
-                <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <p>Card Content</p>
-            </CardContent>
-            <CardFooter>
-                <p>Card Footer</p>
-            </CardFooter>
+    <div className='grid 2xl:grid-cols-4 grid-cols-1  md:grid-cols-3 md:gap-10 gap-3'>
+        {cardsData.map((card) => (
+            
+            <Card className="h-full" key={card.id}>
+                <CardHeader className='h-[35vh] relative'>
+                    <Image
+                        src={card.img}
+                        layout='fill'
+                        alt={card.name}
+                    />
+                </CardHeader>
+                <CardContent>
+                    <CardTitle>{card.name}</CardTitle>
+                    <CardDescription>{card.description}</CardDescription>
+                </CardContent>
             </Card>
-            <Card>
-            <CardHeader>
-                <CardTitle>Card Title masonaspasdknasdoka sdopasdjaospdinas</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <p>Card Content</p>
-            </CardContent>
-            <CardFooter>
-                <p>Card Footer</p>
-            </CardFooter>
-            </Card>
-            <Card>
-            <CardHeader>
-                <CardTitle>Card Title masonaspasdknasdoka sdopasdjaospdinas</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <p>Card Content</p>
-            </CardContent>
-            <CardFooter>
-                <p>Card Footer</p>
-            </CardFooter>
-        </Card>
+        ))}
     </div>
   )
 }

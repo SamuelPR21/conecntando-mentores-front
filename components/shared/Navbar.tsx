@@ -11,7 +11,7 @@ const Navbar = ({location}: NavbarProps) => {
   return (
     <div>
         <nav className='flex justify-evenly items-center h-12 bg-primary text-primary-foreground'>
-            <div >
+            <div className='font-bold'>
                 Usquito
             </div>
             <div className='w-2/5'>
@@ -21,9 +21,9 @@ const Navbar = ({location}: NavbarProps) => {
                 <li>Contacto</li>
             </ul>
             </div>
-            <div className='gap-4 flex'>
-            <Button variant={'secondary'}>Registrate</Button>
-            <Button variant={'secondary'}>Iniciar sesion</Button>
+            <div className='gap-4 flex ml-32'>
+                <Button variant={'outline'}>Registrate</Button>
+                <Button variant={'outline'}>Iniciar sesion</Button>
             </div>
         </nav>
     </div>
