@@ -13,7 +13,7 @@ import {
 
 const News = () => {
   return (
-    <div className='grid 2xl:grid-cols-4 grid-cols-1  md:grid-cols-3 md:gap-10 gap-3'>
+    <div className='grid 2xl:grid-cols-4 grid-cols-1 md:grid-cols-3 md:gap-10 gap-3'>
         {cardsData.map((card) => (
             
             <Card className="h-full" key={card.id}>
