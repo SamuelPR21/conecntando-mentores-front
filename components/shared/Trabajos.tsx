@@ -1,7 +1,7 @@
 import React from 'react'
 import { trabajosData } from '@/lib/data'
-import { Button } from '@/components/ui/button'
 
+import Link from 'next/link'
 import {
     Card,
     CardContent,
@@ -11,7 +11,9 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 
-const Trabajos = () => {
+const Trabajos = async () => {
+
+
 return (
     <div className='grid grid-flow-row gap-3'>
         {trabajosData.map(trabajo => (
@@ -28,7 +30,7 @@ return (
                         <CardDescription className='text-xs'>Fecha de entrega: {trabajo.fecha}</CardDescription>
                     </div>
                     
-                    <Button className='justify-end' variant={'secondary'}>Ver trabajo</Button>
+                    <Link href={`/trabajos/${trabajo.id}`} className='justify-end'>Ver trabajo</Link>
                 </CardContent>
             </Card>
         ))}
