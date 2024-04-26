@@ -13,7 +13,7 @@ import {
 
 const News = () => {
   return (
-    <div className='grid 2xl:grid-cols-4 grid-cols-1 md:grid-cols-3 md:gap-10 gap-3'>
+    <div className='w-[90%] grid 2xl:grid-cols-4 grid-cols-1 md:grid-cols-3 md:gap-10 gap-5'>
         {cardsData.map((card) => (
             
             <Card className="h-full" key={card.id}>
@@ -24,7 +24,7 @@ const News = () => {
                         alt={card.name}
                     />
                 </CardHeader>
-                <CardContent>
+                <CardContent className=''>
                     <CardTitle>{card.name}</CardTitle>
                     <CardDescription>{card.description}</CardDescription>
                 </CardContent>

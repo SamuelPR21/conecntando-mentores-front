@@ -21,7 +21,9 @@ return (
                 className='border bg-transparent'
                 key={trabajo.id}>
                 <CardHeader>
-                    <CardTitle>Trabajo: {trabajo.name}</CardTitle>
+                    <CardTitle
+                        className='text-xl lg:text-2xl'
+                    >Trabajo: {trabajo.name}</CardTitle>
                 </CardHeader>
                 <CardContent className='flex justify-between'>
                     <div>

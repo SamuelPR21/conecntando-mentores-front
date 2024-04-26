@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button } from '../ui/button'
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 
 
 
@@ -30,11 +31,12 @@ return (
                 </ul>
             </div>
             {location === 'auth' ? (
-                <div></div>
+                <div>
+                    Bienvenido a Usquito...
+                </div>
             ) : location === 'profile' ? (
                 <div className='gap-4 items-center flex ml-32'>
                     <p>Gabs</p>
-                    <Button variant={'outline'} size={'sm'}>Cerrar Sesión</Button>
                 </div>
             ) : (
                 <div className='gap-4 flex ml-32'>
@@ -46,6 +48,65 @@ return (
                     </Button>
                 </div>
             )}
+            {
+                location === 'profile' && (
+                    <Sheet>
+                <SheetTrigger>
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 6h16M4 12h16m-7 6h7"
+                      />
+                    </svg>
+                  
+                </SheetTrigger>
+
+                <SheetContent className='w-64 flex flex-col justify-between' >
+                    <div>
+                        <SheetHeader>
+                            <SheetTitle>Menu</SheetTitle>
+                        </SheetHeader>
+                        
+                            <ul className=' mt-4 flex flex-col gap-5 pl-3'>
+                                <li>
+                                    <Link href='/profile'>Perfil</Link>
+                                </li>
+                                <li>
+                                    <Link href='/profile/trabajos'>Buscar Trabajos</Link>
+                                </li>
+                                <li>
+                                    <Link href='/profile/trabajos/nuevo'>Nuevo Trabajo</Link>
+                                </li>
+                                <li>
+                                    <Link href='/profile/trabajos/nuevo'>Nosotros</Link>
+                                </li>
+                                <li>
+                                    <Link href='/profile/trabajos/nuevo'>La usco</Link>
+                                </li>
+                                <li>
+                                    <Link href='/profile/trabajos/nuevo'>Contacto</Link>
+                                </li>
+                            </ul>
+                    </div>
+                        <SheetFooter>
+                            <Button variant={'outline'}>
+                                <Link href='/logout'>Cerrar sesion</Link>
+                            </Button>
+                        </SheetFooter>
+                </SheetContent>
+                
+
+              </Sheet>
+                ) 
+            }
 
         </nav>
     </div>
