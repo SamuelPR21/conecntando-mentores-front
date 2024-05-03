@@ -1,9 +1,12 @@
 import React from 'react'
+import Link from 'next/link'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import { Button } from '../ui/button'
 import Trabajos from './Trabajos'
+
+import AddTrabajo from './AddTrabajo'
 
 const DashboardTabs = () => {
   return (
@@ -20,10 +23,14 @@ const DashboardTabs = () => {
         >
           Trabajos guardados
         </h1>
-          <Button
+        <Link
+          href='/trabajos'>
+            <Button
             variant={'outline'}
             className='bg-transparent '
-          >Buscar +</Button>
+            >Buscar +</Button>
+        </Link>
+          
         </header>
         <Trabajos />
       </TabsContent>
@@ -35,16 +42,9 @@ const DashboardTabs = () => {
         >
           Trabajos Realizados
         </h1>
-          <Button
-            variant={'outline'}
-            className='hidden bg-transparent md:block'
-          >Crear nuevo trabajo</Button>
-          <Button
-            variant={'outline'}
-            className='block md:hidden bg-transparent'
-          >
-            +
-          </Button>
+         
+         <AddTrabajo />
+          
         </header>
         <Trabajos />
       </TabsContent>
