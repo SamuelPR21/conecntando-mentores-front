@@ -12,3 +12,10 @@ export const defaultValuesAuthForm = {
   password: '',
   newPassword: '',
 }
+
+export const defaultValuesUploadForm = {
+  title: '',
+  date: '',
+  content: '',
+  materia: '',
+}

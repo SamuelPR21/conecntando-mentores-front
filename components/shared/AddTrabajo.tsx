@@ -12,6 +12,8 @@ import React from 'react'
 import { Button } from "../ui/button"
 import {Input} from '../ui/input'
 
+import UploadForm from "./UploadForm"
+
 const AddTrabajo = () => {
   return (
     <div>
@@ -33,12 +35,7 @@ const AddTrabajo = () => {
                         Llena los campos para crear un nuevo trabajo
                     </DialogDescription>
                 </DialogHeader>
-                    <form>
-                        <label htmlFor="title">Título</label>
-                        <Input type="text" id="title" />
-                        <label htmlFor="description">Tarea</label>
-                        <Textarea />
-                    </form>
+                   <UploadForm />
             
             </DialogContent>
         </Dialog>

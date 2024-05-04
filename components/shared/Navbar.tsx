@@ -75,30 +75,27 @@ return (
                             <SheetTitle>Menu</SheetTitle>
                         </SheetHeader>
                         
-                            <ul className=' mt-4 flex flex-col gap-5 pl-3'>
-                                <li>
-                                    <Link href='/profile'>Perfil</Link>
+                            <ul className=' mt-4 flex flex-col'>
+                                <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
+                                    <Link href='/dashboard'>Perfil</Link>
                                 </li>
-                                <li>
-                                    <Link href='/profile/trabajos'>Buscar Trabajos</Link>
+                                <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
+                                    <Link href='/trabajos'>Buscar Trabajos</Link>
                                 </li>
-                                <li>
-                                    <Link href='/profile/trabajos/nuevo'>Nuevo Trabajo</Link>
-                                </li>
-                                <li>
+                                {/* <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
                                     <Link href='/profile/trabajos/nuevo'>Nosotros</Link>
+                                </li> */}
+                                <li className='block md:hidden hover:bg-card p-3 rounded-full cursor-pointer'>
+                                    <Link target='_blank' href='https://usco.edu.co/es/'>La usco</Link>
                                 </li>
-                                <li>
-                                    <Link href='/profile/trabajos/nuevo'>La usco</Link>
-                                </li>
-                                <li>
-                                    <Link href='/profile/trabajos/nuevo'>Contacto</Link>
+                                <li className='block md:hidden hover:bg-card p-3 rounded-full cursor-pointer'>
+                                    <Link href='mailto:u20231211209@usco.edu.co'>Contacto</Link>
                                 </li>
                             </ul>
                     </div>
                         <SheetFooter>
                             <Button variant={'outline'}>
-                                <Link href='/logout'>Cerrar sesion</Link>
+                                <Link href='/'>Cerrar sesion</Link>
                             </Button>
                         </SheetFooter>
                 </SheetContent>
