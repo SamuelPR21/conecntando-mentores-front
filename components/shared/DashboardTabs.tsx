@@ -11,12 +11,12 @@ import AddTrabajo from './AddTrabajo'
 const DashboardTabs = () => {
   return (
     <div>
-        <Tabs defaultValue="saved" className="">
+        {/* <Tabs defaultValue="saved" className="">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="saved">Trabajos Guardados</TabsTrigger>
         <TabsTrigger value="made">Trabajos realizados</TabsTrigger>
-      </TabsList>
-      <TabsContent value="saved">
+      </TabsList> */}
+      {/* <TabsContent value="saved">
       <header className='flex justify-between items-center'>
         <h1
          className='text-2xl font-bold my-4  pl-1'
@@ -33,8 +33,8 @@ const DashboardTabs = () => {
           
         </header>
         <Trabajos />
-      </TabsContent>
-      <TabsContent value="made">
+      </TabsContent> */}
+      {/* <TabsContent value="made"> */}
        
         <header className='flex justify-between items-center'>
         <h1
@@ -47,8 +47,8 @@ const DashboardTabs = () => {
           
         </header>
         <Trabajos />
-      </TabsContent>
-    </Tabs>
+      {/* </TabsContent>
+    </Tabs> */}
     </div>
   )
 }

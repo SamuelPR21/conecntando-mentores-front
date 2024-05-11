@@ -15,13 +15,11 @@ return (
     <div>
         <nav className='flex justify-evenly items-center h-12 bg-primary text-primary-foreground'>
             <div className='font-bold'>
-                <Link href='/'>Usquito</Link>
+                <Link href='/'>CM</Link>
             </div>
             <div className='w-2/5 hidden md:block'>
                 <ul className='flex justify-center gap-10'>
-                    <li>
-                        <Link href="/">Nosotros</Link>
-                    </li>
+                    
                     <li>
                         <Link href="/">La usco</Link>
                     </li>
@@ -32,7 +30,7 @@ return (
             </div>
             {location === 'auth' ? (
                 <div>
-                    Bienvenido a Usquito...
+                    Bienvenido a Conectando mentores...
                 </div>
             ) : location === 'profile' ? (
                 <div className='gap-4 items-center flex ml-32'>

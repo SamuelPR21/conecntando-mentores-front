@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "La Usquito te ayuda",
-  description: "Haber quien es vivo",
+  title: "Conectando Mentores",
+  description: "Plataforma apoyo mutuo",
 };
 
 export default function RootLayout({

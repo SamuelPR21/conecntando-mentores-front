@@ -11,7 +11,7 @@ export default function Home() {
       items-center bg-hero-pattern  object-cover">
         <div className=" p-6 md:p-12 bg-background opacity-90">
           <h1 className=" font-bold lg:text-8xl text-4xl">
-          LA USQUITO AYUDA
+            Conectando Mentores
           </h1>
           
           <p className=" mt-2">

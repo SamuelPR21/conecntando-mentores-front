@@ -24,13 +24,7 @@ const TrabajoContent = () => {
                     <span className="text-sm">3 semestre</span>
                 </div>
             </div>
-            <div>
-              <Button
-                variant={'outline'}
-              >
-                Guardar tarea
-              </Button>
-            </div>
+            
           </div>
          
          <div className="shadow-lg mt-4 md:mt-0 rounded-md">
@@ -40,13 +34,13 @@ const TrabajoContent = () => {
               accumsan et viverra justo commodo. Proin sodales pulvinar sicce
               condimentum.
           </p>
-            <Image
+            {/* <Image
                 className='mx-auto rounded-md my-4'
                 src="/noticias2.jfif"
                 alt="imagen"
                 width={500}
                 height={500}
-            ></Image>
+            ></Image> */}
 
           <p className="text-base p-2">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
