@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger
 
 
 type NavbarProps = {
-    location: 'auth' | 'main' | 'profile'
+    location: 'auth' | 'main' | 'profile' | 'admin'
 }
 
 
@@ -32,74 +32,94 @@ return (
                 <div>
                     Bienvenido a Conectando mentores...
                 </div>
-            ) : location === 'profile' ? (
+            ) : location === 'profile'  ? (
                 <div className='gap-4 items-center flex ml-32'>
                     <p>Gabs</p>
                 </div>
-            ) : (
-                <div className='gap-4 flex ml-32'>
-                    <Button variant={'outline'}>
+            ) : location === 'admin' ? (
+                <div className='gap-4 items-center flex ml-32'>
+                    <p>Admin</p>
+                </div>
+            ):(
+                <div className='gap-4 flex ml-32 text-xs'>
+                    <Button size={'sm'} variant={'outline'} >
                         <Link href='/register'>Registrarse</Link>
                     </Button>
-                    <Button variant={'outline'}>
+                    <Button variant={'outline'} size={'sm'} >
                         <Link href='/login'>Iniciar sesion</Link>
                     </Button>
+                    
                 </div>
             )}
             {
-                location === 'profile' && (
+                (location === 'profile' || location === 'admin') && (
                     <Sheet>
-                <SheetTrigger>
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 6h16M4 12h16m-7 6h7"
-                      />
-                    </svg>
-                  
-                </SheetTrigger>
-
-                <SheetContent className='w-64 flex flex-col justify-between' >
-                    <div>
-                        <SheetHeader>
-                            <SheetTitle>Menu</SheetTitle>
-                        </SheetHeader>
+                        <SheetTrigger>
+                            <svg
+                            className="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 6h16M4 12h16m-7 6h7"
+                            />
+                            </svg>
                         
-                            <ul className=' mt-4 flex flex-col'>
-                                <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
-                                    <Link href='/dashboard'>Perfil</Link>
-                                </li>
-                                <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
-                                    <Link href='/trabajos'>Buscar Trabajos</Link>
-                                </li>
-                                {/* <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
-                                    <Link href='/profile/trabajos/nuevo'>Nosotros</Link>
-                                </li> */}
-                                <li className='block md:hidden hover:bg-card p-3 rounded-full cursor-pointer'>
-                                    <Link target='_blank' href='https://usco.edu.co/es/'>La usco</Link>
-                                </li>
-                                <li className='block md:hidden hover:bg-card p-3 rounded-full cursor-pointer'>
-                                    <Link href='mailto:u20231211209@usco.edu.co'>Contacto</Link>
-                                </li>
-                            </ul>
-                    </div>
-                        <SheetFooter>
-                            <Button variant={'outline'}>
-                                <Link href='/'>Cerrar sesion</Link>
-                            </Button>
-                        </SheetFooter>
-                </SheetContent>
+                        </SheetTrigger>
+
+                        <SheetContent className='w-64 flex flex-col justify-between' >
+                            <div>
+                                <SheetHeader>
+                                    <SheetTitle>Menu</SheetTitle>
+                                </SheetHeader>
+                                
+                                    <ul className=' mt-4 flex flex-col'>
+                                        {location === 'profile' && (
+                                            <>
+                                                <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
+                                                    <Link href='/dashboard'>Perfil</Link>
+                                                </li>
+                                                <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
+                                                    <Link href='/trabajos'>Buscar Trabajos</Link>
+                                                </li>
+                                            </>
+                                        )}
+                                         {location === 'admin' && (
+                                            <>
+                                                <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
+                                                    <Link href='/imadmin/profile'>Perfil</Link>
+                                                </li>
+                                                <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
+                                                    <Link href='/imadmin'>Lista de datos</Link>
+                                                </li>
+                                            </>
+                                        )}
+                                       
+                                        {/* <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
+                                            <Link href='/profile/trabajos/nuevo'>Nosotros</Link>
+                                        </li> */}
+                                        <li className='block md:hidden hover:bg-card p-3 rounded-full cursor-pointer'>
+                                            <Link target='_blank' href='https://usco.edu.co/es/'>La usco</Link>
+                                        </li>
+                                        <li className='block md:hidden hover:bg-card p-3 rounded-full cursor-pointer'>
+                                            <Link href='mailto:u20231211209@usco.edu.co'>Contacto</Link>
+                                        </li>
+                                    </ul>
+                            </div>
+                                <SheetFooter>
+                                    <Button variant={'outline'}>
+                                        <Link href='/'>Cerrar sesion</Link>
+                                    </Button>
+                                </SheetFooter>
+                        </SheetContent>
                 
 
-              </Sheet>
+                    </Sheet>
                 ) 
             }
 

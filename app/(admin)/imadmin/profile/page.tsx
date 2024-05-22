@@ -1,11 +1,10 @@
 import React from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import DashboardTabs from '@/components/shared/DashboardTabs'
 
 
 
-const DashboardPage = () => {
+const AdminProfile = () => {
   return (
     <div className='gap-4 my-7 w-[90%] mx-auto'>
        
@@ -13,12 +12,12 @@ const DashboardPage = () => {
                 <Avatar>
                     <AvatarImage />
                     <AvatarFallback>
-                        G
+                        A
                     </AvatarFallback>
                 </Avatar>
                 <div className='flex flex-col'>
-                    <span className="text-2xl md:text-2xl font-bold">Gabs</span>
-                    <span className="text-xl">10 semestre</span>
+                    <span className="text-2xl md:text-2xl font-bold">Admin</span>
+                    <span className="text-xl">Usuario administrador</span>
                 </div>
             </header>
 
@@ -33,4 +32,4 @@ const DashboardPage = () => {
   )
 }
 
-export default DashboardPage
+export default AdminProfile

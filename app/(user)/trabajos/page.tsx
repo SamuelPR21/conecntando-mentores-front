@@ -40,7 +40,6 @@ const TrabajosPage = () => {
         </div>
         <header>
             <div className="flex items-center justify-around gap-3 ">
-                <Filters />
                 <Searcher />
             </div>
         </header>

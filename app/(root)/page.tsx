@@ -21,7 +21,7 @@ export default function Home() {
         
       </div>
 
-      <div className="lg:mt-14 md:mt-10 mt-7 flex flex-col items-center justify-center xl:my-12 px-8">
+      <div className="lg:mt-14 md:mt-10 mt-7 flex flex-col items-center justify-center xl:my-12 md:px-8">
         <h1 className="xl:text-6xl text-4xl mb-7 md:mt-10 lg:mb-14 text-primary-foreground">
           Noticias de Software
         </h1>

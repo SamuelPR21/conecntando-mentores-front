@@ -17,7 +17,7 @@ const News = () => {
         {cardsData.map((card) => (
             
             <Card className="h-full" key={card.id}>
-                <CardHeader className='h-[35vh] relative'>
+                <CardHeader className='lg:h-[35vh] h-[20vh] relative'>
                     <Image
                         src={card.img}
                         layout='fill'

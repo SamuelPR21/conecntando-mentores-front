@@ -20,7 +20,8 @@ import { Input } from "../ui/input"
 import Loading from "./Loading"
 
 import {defaultValuesAuthForm} from "@/lib/utils"
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 
 export const authFormSchema = z.object({
@@ -48,7 +49,15 @@ const AuthForm = ({type}: AuthFormProps) => {
     //User data
     // const {setUserId} = useUserData()
     //Router
-    const router = useRouter()
+    const router = useRouter();
+    // const searchParams  = useSearchParams();
+    // console.log(searchParams);
+    // const {role} = useParams();
+    // console.log(role);
+    // debugger;
+
+
+    
 
     //Defining the form
     const form = useForm<z.infer<typeof authFormSchema>>({
@@ -142,11 +151,13 @@ return (
     <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} action="">
             <div className="w-4/5 mx-auto flex-row items-center justify-center">
+               
                 {error && (
                     <div className="w-full mt-6 bg-red-200 p-2 text-center text-red-700">
                         {error}
                     </div>
                 )}
+
                 {type === 'register' && (
                     <FormField
                         control={form.control}

@@ -15,7 +15,7 @@ const Layout = ({children}: {children: React.ReactNode}) => {
             <div className='flex flex-col justify-center items-center mx-auto w-4/5 md:w-3/5 2xl:w-1/2 min-h-screen '>
                 {/* Logo */}
                 {/* <Image className="xl:mb-20 mb-6 " alt='kairos' src="/kairos-login.svg" width={250} height={150}></Image> */}
-                <Card className='p-10 mb-20'>
+                <Card className='px-0 py-4 md:p-10 mb-20'>
                     {children}
                 </Card>
             </div>

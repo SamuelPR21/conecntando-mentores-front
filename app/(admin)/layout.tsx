@@ -8,7 +8,7 @@ const Layout = ({children}: {children: React.ReactNode}) => {
     
       <main className='root'>
             <Navbar 
-                location='profile'
+                location='admin'
             />
           <div className="root-container overflow-hidden mb-6">
                 {children} 

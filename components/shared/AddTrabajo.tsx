@@ -18,13 +18,8 @@ const AddTrabajo = () => {
   return (
     <div>
         <Dialog>
-            <DialogTrigger>
-                <Button
-                    variant={'outline'}
-                    className='bg-transparent'
-                >
+            <DialogTrigger className="border rounded-md px-4 py-2">
                     Subir +
-                </Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
