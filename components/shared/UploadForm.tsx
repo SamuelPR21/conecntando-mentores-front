@@ -28,7 +28,6 @@ import { Textarea } from '../ui/textarea';
 
 export const authFormSchema = z.object({
     title: z.string({ required_error: "El campo 'Titulo' no puede estar vacío." }),
-    date: z.string({ required_error: "El campo 'Fecha' no puede estar vacío." }),
     content: z.string({ required_error: "El campo 'Fecha' no puede estar vacío." }),
     materia: z.string({ required_error: "El campo 'Materia' no puede estar vacío." }),
 });
@@ -149,23 +148,7 @@ return (
                 
                 
 
-                <FormField
-                    control={form.control}
-                    name='date'
-                    render={({ field }) => (
-                        <FormItem className="w-full mt-6" >
-                            <FormLabel> Email</FormLabel>
-                            <FormControl>
-                                <Input 
-                                    onFocus={() => setErrorForm('')}
-                                    {...field} 
-                                    type="date"
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                
 
                <FormField
                     control={form.control}

@@ -1,5 +1,6 @@
 'use client';
 import React, {useState, useEffect} from 'react'
+import { handleCreateUser, handleLoginUser } from '@/actions/users';
 
 //Shadcn staff for forms
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -20,21 +21,23 @@ import { Input } from "../ui/input"
 import Loading from "./Loading"
 
 import {defaultValuesAuthForm} from "@/lib/utils"
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { postLogin } from '@/services/backend/auth';
+
 
 
 export const authFormSchema = z.object({
-    name: z.string({ required_error: "El campo 'Nombre' no puede estar vacío." }),
-    email: z.string({ required_error: "El campo 'email' no puede estar vacío." }),
+    username: z.string({ required_error: "El campo 'Nombre' no puede estar vacío." }),
+    user_name: z.string({ required_error: "El campo 'email' no puede estar vacío." }).optional(),
+    user_apellido: z.string({ required_error: "El campo 'email' no puede estar vacío." }).optional(),
     password: z.string()
         .min(8, "La contraseña debe tener al menos 8 caracteres.")
         .refine(password => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password), {
             message: "La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número.",
         })
         ,
-    newPassword: z.string().optional(),
-    rememberMe: z.boolean().optional(),
+    // newPassword: z.string().optional(),
+    // rememberMe: z.boolean().optional(),
     
 });
 
@@ -42,22 +45,12 @@ export const authFormSchema = z.object({
 //The form
 
 const AuthForm = ({type}: AuthFormProps) => {
+    console.log(type)
     const [error, setErrorForm] = useState('')
     const [disabled, setDisabled] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    //User data
-    // const {setUserId} = useUserData()
-    //Router
     const router = useRouter();
-    // const searchParams  = useSearchParams();
-    // console.log(searchParams);
-    // const {role} = useParams();
-    // console.log(role);
-    // debugger;
-
-
-    
 
     //Defining the form
     const form = useForm<z.infer<typeof authFormSchema>>({
@@ -67,21 +60,21 @@ const AuthForm = ({type}: AuthFormProps) => {
 
     //Validate if password fields' values are the same
 
-    const {setError, watch, clearErrors } = form;
-    const password = watch('password');
-    const newPassword = watch('newPassword');
+    // const {setError, watch, clearErrors } = form;
+    // const password = watch('password');
+    // const newPassword = watch('newPassword');
 
     //Watchers
-    useEffect(() => {
-        if (type === 'register' && password !== newPassword) {
-          setError('newPassword', {
-            type: 'mismatch',
-            message: 'Las contraseñas no coinciden',
-          });
-        } else {
-          clearErrors('newPassword');
-        }
-      }, [password, newPassword, setError, clearErrors, type]);
+    // useEffect(() => {
+    //     if (type === 'register' && password !== newPassword) {
+    //       setError('newPassword', {
+    //         type: 'mismatch',
+    //         message: 'Las contraseñas no coinciden',
+    //       });
+    //     } else {
+    //       clearErrors('newPassword');
+    //     }
+    //   }, [password, newPassword, setError, clearErrors, type]);
 
     
     // 2. Define a submit handler.
@@ -89,55 +82,56 @@ const AuthForm = ({type}: AuthFormProps) => {
         setDisabled(true)
         setLoading(true)
         //HandleSubmit para cuando usuario se logueará
-        if (type === 'login') {
-            const {rememberMe, newPassword, name, ...rest} = values;
-            if (!Object.values(rest).every(value => value)) {
-                setErrorForm('Todos los campos son requeridos');
-            } else {
-                console.log('Intento de login con: ', {values})
-                setTimeout(() => {
-                    router.push('/trabajos')
-                }, 2000)
-                // try {
-                    
-                //     const data = await handleLogin(values)
-                    
-
-                //     if (!data.error){
-                //         // setUserId(data.id)
-                //         router.push('/dashboard')
-                //     } else {
-                //        const errMessage = errorHandlerAuthForm(data.error);
-                //        setErrorForm(errMessage as string);                    
-                //     }
-                //     form.reset();
-                // } catch (err){
-                //     console.error('No se pudo llamar el handleLogin')
+        if(type === 'login' || type === 'login-admin') {
+            try {
+                const { password } = values;
+                const dataBackend = {username: values.username, user_password: password}
+                if(type === 'login'){
+                    const data = await handleLoginUser(dataBackend);
+                    if(data === true){
+                        router.push('/trabajos')
+                    }
+                } else {
+                    const data = await handleLoginUser(dataBackend);
+                    if(data === true){
+                        router.push('/imadmin')
+                    }
+                }
+                
+                
+                // console.log('Data final al recibir el formulario:', data)
+                // if(data === `Unexpected token '<', "<!DOCTYPE "... is not valid JSON`){
+                //     setErrorForm('Este correo ya está en uso!')
+                // } else if(data === 'fetch failed'){
+                //     setErrorForm('Servidor no responde!')
+                // } else {
+                //     router.push('/')
                 // }
+            } catch (err){
+                console.error(err)
             }
-            
-        } 
+        }
 
         //HandleSubmit para cuando usuario se registrará
         else {
-            const {rememberMe, newPassword, ...rest} = values;
-            if (!Object.values(rest).every(value  => value)) {
+            // const { password, ...rest} = values;
+            if (!Object.values(values).every(value  => value)) {
                 setErrorForm('Todos los campos son requeridos');
             } else {
-                console.log('User registrado: ', {rest})
-                // try {
-                //     const data = await handleRegister(rest)
-                //     console.log('Data final al recibir el formulario:', data)
-                //     if(data === `Unexpected token '<', "<!DOCTYPE "... is not valid JSON`){
-                //         setErrorForm('Este correo ya está en uso!')
-                //     } else if(data === 'fetch failed'){
-                //         setErrorForm('Servidor no responde!')
-                //     } else {
-                //         router.push('/completed')
-                //     }
-                // } catch (err){
-                //     console.error(err)
-                // }
+                console.log('User registrado: ', {values})
+                try {
+                    const data = await handleCreateUser(values);
+                    console.log('Data final al recibir el formulario:', data)
+                    if(data === `Unexpected token '<', "<!DOCTYPE "... is not valid JSON`){
+                        setErrorForm('Este correo ya está en uso!')
+                    } else if(data === 'fetch failed'){
+                        setErrorForm('Servidor no responde!')
+                    } else {
+                        router.push('/')
+                    }
+                } catch (err){
+                    console.error(err)
+                }
                 form.reset();
             }
             
@@ -158,33 +152,49 @@ return (
                     </div>
                 )}
 
-                {type === 'register' && (
-                    <FormField
-                        control={form.control}
-                        name='name'
-                        render={({ field }) => (
-                            <FormItem className="w-full mt-6" >
-                                <FormLabel> Name</FormLabel>
-                                <FormControl>
-                                    <Input {...field} type="text" onFocus={() => setErrorForm('')}/>
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                {(type === 'register' || type === 'register-admin') && (
+                    <>
+                        <FormField
+                            control={form.control}
+                            name='user_name'
+                            render={({ field }) => (
+                                <FormItem className="w-full mt-6" >
+                                    <FormLabel> Nombre real</FormLabel>
+                                    <FormControl>
+                                        <Input {...field} type="text" onFocus={() => setErrorForm('')}/>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name='user_apellido'
+                            render={({ field }) => (
+                                <FormItem className="w-full mt-6" >
+                                    <FormLabel> Apellido</FormLabel>
+                                    <FormControl>
+                                        <Input {...field} type="text" onFocus={() => setErrorForm('')}/>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </>
+                    
                 )}
 
                 <FormField
                     control={form.control}
-                    name='email'
+                    name='username'
                     render={({ field }) => (
                         <FormItem className="w-full mt-6" >
-                            <FormLabel> Email</FormLabel>
+                            <FormLabel> Nombre de usuario</FormLabel>
                             <FormControl>
                                 <Input 
                                     onFocus={() => setErrorForm('')}
                                     {...field} 
-                                    type="email"
+                                    type="text"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -213,7 +223,7 @@ return (
                     )}
                 />
 
-                {type === 'register' && (
+                {/* {(type === 'register' || type === 'register-admin') && (
                     <FormField
                         control={form.control}
                         name='newPassword'
@@ -227,7 +237,7 @@ return (
                             </FormItem>
                         )}
                     />
-                )}
+                )} */}
             </div>
 
             {loading && <Loading />}
@@ -241,7 +251,7 @@ return (
                         ${!disabled ? 'bg-gray-400' : 'bg-[#2c2c2c]'}
                     `}
                 >
-                    {type === 'login' ? 'Inicio' : 'Registrar'}
+                    {(type === 'login' || type === 'login-admin') ? 'Inicio' : 'Registrar'}
                 </Button>
             </div>
         </form>

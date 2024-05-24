@@ -4,12 +4,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-const TrabajoContent = () => {
 
+import { trabajosData } from '@/lib/data'
+
+interface TrabajoContentProps {
+  params: {
+    id?: string;
+  }
+}
+
+const TrabajoContent = ({params}: TrabajoContentProps) => {
+    const {id} = params;
+    console.log(id);
+
+    const trabajo = trabajosData.find(trabajo => trabajo.id === id);
+
+    trabajosData.find
     return (
         <div className="p-4 flex flex-col  gap-2 md:gap-4 text-foreground">
           <h1 className=" text-4xl md:text-6xl font-bold mb-2">
-            Proyecto de redes con el calvo: PacketTracer 
+            {trabajo?.name}
           </h1>
           <div className='flex items-center justify-between'>
             <div className='flex items-center gap-4'>
@@ -43,22 +57,12 @@ const TrabajoContent = () => {
             ></Image> */}
 
           <p className="text-base p-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              euismod bibendum laoreet. Proin gravida dolor sit amet lacus
-              accumsan et viverra justo commodo. Proin sodales pulvinar sicce
-              condimentum. <br />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              euismod bibendum laoreet. Proin gravida dolor sit amet lacus
-              accumsan et viverra justo commodo. Proin sodales pulvinar sicce
-              condimentum. <br />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              euismod bibendum laoreet. Proin gravida dolor sit amet lacus
-              accumsan et viverra justo commodo. Proin sodales pulvinar sicce
-              condimentum.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              euismod bibendum laoreet. Proin gravida dolor sit amet lacus
-              accumsan et viverra justo commodo. Proin sodales pulvinar sicce
-              condimentum.s
+          {trabajo?.contenido.split('\n').map((line, i) => (
+            <span key={i}>
+                {line}
+                <br />
+            </span>
+          ))}
           </p>
          </div>
           

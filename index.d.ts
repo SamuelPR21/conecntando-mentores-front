@@ -1,3 +1,3 @@
 interface AuthFormProps {
-    type: 'login' | 'register'
+    type: 'login' |'login-admin' | 'register-admin' | 'register'
 }

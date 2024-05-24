@@ -34,7 +34,7 @@ return (
                 </div>
             ) : location === 'profile'  ? (
                 <div className='gap-4 items-center flex ml-32'>
-                    <p>Gabs</p>
+                    <p></p>
                 </div>
             ) : location === 'admin' ? (
                 <div className='gap-4 items-center flex ml-32'>
@@ -43,11 +43,12 @@ return (
             ):(
                 <div className='gap-4 flex ml-32 text-xs'>
                     <Button size={'sm'} variant={'outline'} >
-                        <Link href='/register'>Registrarse</Link>
+                        <Link href={{pathname: '/register', query: {role: 'user'}}}>Registrarse</Link>
                     </Button>
                     <Button variant={'outline'} size={'sm'} >
-                        <Link href='/login'>Iniciar sesion</Link>
+                        <Link  href={{pathname: '/login', query: {role: 'user'}}}>Iniciar sesion</Link>
                     </Button>
+                    <Link  href={{pathname: '/login', query: {role: 'admin'}}}>Entrar como admin</Link>
                     
                 </div>
             )}
@@ -106,9 +107,9 @@ return (
                                         <li className='block md:hidden hover:bg-card p-3 rounded-full cursor-pointer'>
                                             <Link target='_blank' href='https://usco.edu.co/es/'>La usco</Link>
                                         </li>
-                                        <li className='block md:hidden hover:bg-card p-3 rounded-full cursor-pointer'>
+                                        {/* <li className='block md:hidden hover:bg-card p-3 rounded-full cursor-pointer'>
                                             <Link href='mailto:u20231211209@usco.edu.co'>Contacto</Link>
-                                        </li>
+                                        </li> */}
                                     </ul>
                             </div>
                                 <SheetFooter>
