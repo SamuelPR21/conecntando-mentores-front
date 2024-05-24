@@ -1,5 +1,6 @@
 'use server'
 import { postUsers, editUser, deleteUser } from "@/services/backend/users"
+import { getUserById } from "@/services/backend/users";
 // import { postLogin } from "@/services/backend/auth"
 import { setCookies } from "@/utils/cookies"
 
@@ -20,9 +21,13 @@ function valuesFromCookies() {
 export const handleLoginUser = async (formData: any) => {
     try {
         const a = await setCookies(formData);
-        if(a === true){
-            return true;
-        }
+        console.log('El rol debe ser: ', a);
+
+
+        // if(a === true){
+            
+        //     return true;
+        // }
     } catch (err: any) {
         console.error(err.message)
         return {error: err.message}

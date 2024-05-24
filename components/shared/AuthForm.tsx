@@ -86,17 +86,16 @@ const AuthForm = ({type}: AuthFormProps) => {
             try {
                 const { password } = values;
                 const dataBackend = {username: values.username, user_password: password}
-                if(type === 'login'){
+                if(type === 'login' || type === 'login-admin'){
                     const data = await handleLoginUser(dataBackend);
-                    if(data === true){
+                    console.log('Data final al recibir el formulario:', data)
+                    if(data === 'ROLE_USER'){
                         router.push('/trabajos')
                     }
-                } else {
-                    const data = await handleLoginUser(dataBackend);
-                    if(data === true){
+                    if(data === 'ROLE_ADMIN'){
                         router.push('/imadmin')
                     }
-                }
+                } 
                 
                 
                 // console.log('Data final al recibir el formulario:', data)

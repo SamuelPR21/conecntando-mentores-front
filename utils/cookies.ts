@@ -1,3 +1,4 @@
+'use server';
 import { postLogin } from "@/services/backend/auth"
 
 import { cookies } from "next/headers"
@@ -20,7 +21,7 @@ export const setCookies = async (formData: any) => {
     // const { access_token } = data;
 
     if (data) {
-        const {userId, token} = data;
+        const {userId, token, Rol} = data;
         try {
             cookiesStore.set('token', token, {
                 path: '/',
@@ -30,7 +31,10 @@ export const setCookies = async (formData: any) => {
                 path: '/',
                 sameSite: 'strict',
             })
-            return true;
+
+            //Aqui devuelvo el rol
+            return Rol;
+            
         } catch (err) {
             throw new Error('No se pudo guardar la cookie');
         }

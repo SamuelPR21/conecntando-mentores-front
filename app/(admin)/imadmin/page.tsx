@@ -1,6 +1,7 @@
 import React from 'react'
 import AdminTabs from '@/components/shared/AdminTabs'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import Link from 'next/link'
 
 
 const AdminPage = () => {
@@ -25,6 +26,7 @@ const AdminPage = () => {
 
    
           <main className='col-span-2 gap-8 p-0 mt-6'>
+            <Link  href={{pathname: '/register', query: {role: 'admin'}}}>Registrar nuevo admin</Link>
               <AdminTabs />
           </main>
         </div>

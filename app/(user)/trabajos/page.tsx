@@ -21,12 +21,9 @@ import { getUserById } from '@/services/backend/users'
 const TrabajosPage = async () => {
     const cookiesStore = cookies();
     const token = cookiesStore.get('token')?.value || ''; // Provide a default value for token
-    console.log('Token en pagina de trabajos', token)
 
     const user_id = cookiesStore.get('user')?.value || ''; // Provide a default value for user_id
-    console.log('Id del suario', user_id)
     const user = await getUserById(user_id , token);
-    console.log('Objeto de usuario', user)
 
     const firstLetter = user.user_name.charAt(0);
     

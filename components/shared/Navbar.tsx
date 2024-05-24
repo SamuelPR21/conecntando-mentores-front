@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Button } from '../ui/button'
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import LogoutButton from './LogoutButton'
 
 
 
@@ -11,6 +12,9 @@ type NavbarProps = {
 
 
 const Navbar = ({location}: NavbarProps) => {
+
+
+
 return (
     <div>
         <nav className='flex justify-evenly items-center h-12 bg-primary text-primary-foreground'>
@@ -28,11 +32,11 @@ return (
                     </li>
                 </ul>
             </div>
-            {location === 'auth' ? (
+            {/* {location === 'auth' ? (
                 <div>
                     Bienvenido a Conectando mentores...
                 </div>
-            ) : location === 'profile'  ? (
+            ) :*/} {location === 'profile'  ? ( 
                 <div className='gap-4 items-center flex ml-32'>
                     <p></p>
                 </div>
@@ -41,7 +45,7 @@ return (
                     <p>Admin</p>
                 </div>
             ):(
-                <div className='gap-4 flex ml-32 text-xs'>
+                <div className='gap-4 flex ml-32 text-xs items-center'>
                     <Button size={'sm'} variant={'outline'} >
                         <Link href={{pathname: '/register', query: {role: 'user'}}}>Registrarse</Link>
                     </Button>
@@ -113,9 +117,7 @@ return (
                                     </ul>
                             </div>
                                 <SheetFooter>
-                                    <Button variant={'outline'}>
-                                        <Link href='/'>Cerrar sesion</Link>
-                                    </Button>
+                                    <LogoutButton />
                                 </SheetFooter>
                         </SheetContent>
                 
