@@ -19,14 +19,12 @@ const AdminPage = () => {
                 <div className='flex flex-col'>
                     <span className="text-2xl md:text-2xl font-bold">Admin</span>
                     <span className="text-xl">Usuario administrador</span>
+                    <Link className="underline" href={{pathname: '/register', query: {role: 'admin'}}}>Registrar nuevo admin</Link>
+
                 </div>
             </header>
-
-      
-
-   
+  
           <main className='col-span-2 gap-8 p-0 mt-6'>
-            <Link  href={{pathname: '/register', query: {role: 'admin'}}}>Registrar nuevo admin</Link>
               <AdminTabs />
           </main>
         </div>

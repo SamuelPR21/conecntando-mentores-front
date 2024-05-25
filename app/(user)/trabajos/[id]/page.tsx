@@ -19,7 +19,6 @@ const TrabajoContent = ({params}: TrabajoContentProps) => {
 
     const trabajo = trabajosData.find(trabajo => trabajo.id === id);
 
-    trabajosData.find
     return (
         <div className="p-4 flex flex-col  gap-2 md:gap-4 text-foreground">
           <h1 className=" text-4xl md:text-6xl font-bold mb-2">
@@ -41,6 +40,8 @@ const TrabajoContent = ({params}: TrabajoContentProps) => {
             
           </div>
          
+         
+
          <div className="shadow-lg mt-4 md:mt-0 rounded-md">
           <p className="text-base p-2">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean

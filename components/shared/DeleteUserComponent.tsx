@@ -12,8 +12,10 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { handleDeleteUser } from "@/actions/users"
+import { X } from "lucide-react";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
 
 const DeleteUserComponent = ({user}: DeleteUserProps) => {
     const [deleted, setDeleted] = useState(false);
@@ -21,10 +23,10 @@ const DeleteUserComponent = ({user}: DeleteUserProps) => {
 
     const onDelete = async () => {
         const a = await handleDeleteUser(user.user_id);
-        if (a === 'Eliminado'){
+        if (a === 'ok'){
             setDeleted(true)
             setTimeout(() => {
-                router.reload()
+                router.refresh()
             }, 3000)
         }
     }
@@ -33,21 +35,41 @@ return (
     <AlertDialog>
         <AlertDialogTrigger className='text-xs text-red-500'>Eliminar</AlertDialogTrigger>
         <AlertDialogContent>
-            <AlertDialogHeader>
-                <AlertDialogTitle>Estas seguro?</AlertDialogTitle>
-                <AlertDialogDescription>
-                    Vas a eliminar el usuario: {user.username}
-                </AlertDialogDescription>
+            {
+                deleted && (
+                    <>
+                        <div className='bg-green-200 text-green-700 p-2 rounded-md'>
+                            Usuario eliminado correctamente
+                        </div>
+                        <AlertDialogAction className="bg-transparent">
+                            Listo, cerrar
+                        </AlertDialogAction>
+                    </>
+                    
+                )
+            }
+            <AlertDialogHeader className="relative">
+                <div>
+                    <AlertDialogTitle>Estas seguro?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                        Vas a eliminar el usuario: {user.username}
+                    </AlertDialogDescription>
+                </div>
+                <div>
+                    
+                </div>
+                
+                
             </AlertDialogHeader>
             <AlertDialogFooter>
                 <AlertDialogCancel>
                     Cancelar        
                 </AlertDialogCancel>
-                <AlertDialogAction
+                <Button
                     onClick={onDelete}
                 >
                     Si, eliminar
-                </AlertDialogAction>
+                </Button>
             </AlertDialogFooter>
         </AlertDialogContent>
     </AlertDialog>

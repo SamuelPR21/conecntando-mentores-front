@@ -43,7 +43,7 @@ const DashboardTabs = () => {
           Trabajos Realizados
         </h1>
          
-         <AddTrabajo />
+         {/* <AddTrabajo /> */}
           
         </header>
         <Trabajos />

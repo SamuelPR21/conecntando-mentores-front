@@ -54,7 +54,7 @@ const AdminTabs = () => {
           >
             Lista de mis trabajos
           </h1>
-          <AddTrabajo />
+          
             
           </header>
           <Trabajos />

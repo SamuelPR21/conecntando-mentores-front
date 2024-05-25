@@ -92,14 +92,14 @@ export const getUserById = async (id: string, token: any) => {
 
 export const deleteUser = async (token: any, id: string) => {
     try {
-        const response = await fetch(`${URL_USERS}${id}`, {
+        const response = await fetch(`${URL_USERS}/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         })
-        const data = await response.json()
+        const data = await response.text()
         return data;
     } catch (err) {
         console.error(err)

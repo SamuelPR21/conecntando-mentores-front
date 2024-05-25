@@ -11,8 +11,8 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 
-const Trabajos = async () => {
 
+const Trabajos = async () => {
 
 return (
     <div className='grid grid-flow-row gap-3'>
