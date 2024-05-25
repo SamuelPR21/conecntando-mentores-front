@@ -12,7 +12,7 @@ function valuesFromCookies() {
     // const userString = cookiesStore.get('user')?.value;
     // const userObject = userString ? JSON.parse(userString) : {id: 2};
     // const {id} = userObject;
-    return {token}
+    return token;
 }
 
 
@@ -21,13 +21,12 @@ function valuesFromCookies() {
 export const handleLoginUser = async (formData: any) => {
     try {
         const a = await setCookies(formData);
-        console.log('El rol debe ser: ', a);
-
-
-        // if(a === true){
+        if(a.error){
             
-        //     return true;
-        // }
+            return a.error;
+        }
+
+        return a;
     } catch (err: any) {
         console.error(err.message)
         return {error: err.message}
@@ -39,6 +38,9 @@ export const handleLoginUser = async (formData: any) => {
 export const handleCreateUser = async (formData: any) => {
     try {
         const response = await postUsers(formData)
+        if(response === 'Creado'){
+            return true;
+        }
         return response;
        
     } catch (err: any) {
@@ -47,21 +49,25 @@ export const handleCreateUser = async (formData: any) => {
     }
 }
 
-export const handleEditUser = async (formData: any) => {
-    const token = valuesFromCookies;
+export const handleEditUser = async (formData: any, id: string) => {
+    const token = valuesFromCookies();
     try {
-        const response = await editUser(formData, token)
-        return response;
+        const response = await editUser(formData, token, id)
+        if (response.error) {
+            return response.error;
+        } else {
+            return true;
+        }
     } catch (err: any) {
         console.error(err.message)
         return {error: err.message}
     }
 }
 
-export const handleDeleteUser = async (formData: any) => {
-    const token = valuesFromCookies;
+export const handleDeleteUser = async ( id: string) => {
+    const token = valuesFromCookies();
     try {
-       const response = await deleteUser(formData, token);
+       const response = await deleteUser(token, id);
         return response;
     } catch (err: any) {
         console.error(err.message)

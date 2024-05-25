@@ -1,18 +1,19 @@
 import { URL_USERS } from "./urls";
 import { URL_REGISTER } from "./urls";
 
-export const getUsers = async () => {
+export const getUsers = async (token: any) => {
     try{
         const response = await fetch(`${URL_USERS}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
-            cache: 'force-cache'
+            cache: 'no-cache'
         })
-        const data = await response.json()
-        const {calatalogo4t} = data;
-        return calatalogo4t;
+        const data = await response.json();
+        return data;
+        
     } catch (err) {
         console.error(err)
     }
@@ -20,25 +21,26 @@ export const getUsers = async () => {
 
 export const postUsers = async (formData: any) => {
     try {
-        const response = await fetch(`${URL_REGISTER}/user`, {
+        const response = await fetch(`${URL_REGISTER}user`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formData)
         })
-        const data = await response.json()
+        const data = await response.text()
         return data;
+
     } catch (err: any) {
         console.error(err.message)
         return {error: err.message}
     }
 }
 
-export const editUser = async (formData: any, token: any) => {
+export const editUser = async (formData: any, token: any, id: string) => {
     try {
-        const response = await fetch(`${URL_USERS}`, {
-            method: 'POST',
+        const response = await fetch(`${URL_USERS}/editar/${id}`, {
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -55,7 +57,7 @@ export const editUser = async (formData: any, token: any) => {
 
 export const getUserById = async (id: string, token: any) => {
     try {
-        const response = await fetch(`${URL_USERS}${id}`, {
+        const response = await fetch(`${URL_USERS}/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +71,7 @@ export const getUserById = async (id: string, token: any) => {
     }
 }
 
-export const deleteUser = async (id: string, token: any) => {
+export const deleteUser = async (token: any, id: string) => {
     try {
         const response = await fetch(`${URL_USERS}${id}`, {
             method: 'DELETE',

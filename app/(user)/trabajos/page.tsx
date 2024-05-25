@@ -24,6 +24,7 @@ const TrabajosPage = async () => {
 
     const user_id = cookiesStore.get('user')?.value || ''; // Provide a default value for user_id
     const user = await getUserById(user_id , token);
+    console.log(user)
 
     const firstLetter = user.user_name.charAt(0);
     

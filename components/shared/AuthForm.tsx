@@ -31,11 +31,7 @@ export const authFormSchema = z.object({
     user_name: z.string({ required_error: "El campo 'email' no puede estar vacío." }).optional(),
     user_apellido: z.string({ required_error: "El campo 'email' no puede estar vacío." }).optional(),
     password: z.string()
-        .min(8, "La contraseña debe tener al menos 8 caracteres.")
-        .refine(password => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password), {
-            message: "La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número.",
-        })
-        ,
+        .min(6, "La contraseña debe tener al menos 8 caracteres."),
     // newPassword: z.string().optional(),
     // rememberMe: z.boolean().optional(),
     
@@ -49,6 +45,7 @@ const AuthForm = ({type}: AuthFormProps) => {
     const [error, setErrorForm] = useState('')
     const [disabled, setDisabled] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [created, setCreated] = useState(false);
 
     const router = useRouter();
 
@@ -83,6 +80,12 @@ const AuthForm = ({type}: AuthFormProps) => {
         setLoading(true)
         //HandleSubmit para cuando usuario se logueará
         if(type === 'login' || type === 'login-admin') {
+            if (!Object.values(values).every(value  => value)) {
+                setErrorForm('Todos los campos son requeridos');
+                setLoading(false)
+                setDisabled(false)
+                return;
+            }
             try {
                 const { password } = values;
                 const dataBackend = {username: values.username, user_password: password}
@@ -95,17 +98,11 @@ const AuthForm = ({type}: AuthFormProps) => {
                     if(data === 'ROLE_ADMIN'){
                         router.push('/imadmin')
                     }
+                    if (data === 401) {
+                        setErrorForm('Usuario o contraseña incorrectos')
+                    }
                 } 
                 
-                
-                // console.log('Data final al recibir el formulario:', data)
-                // if(data === `Unexpected token '<', "<!DOCTYPE "... is not valid JSON`){
-                //     setErrorForm('Este correo ya está en uso!')
-                // } else if(data === 'fetch failed'){
-                //     setErrorForm('Servidor no responde!')
-                // } else {
-                //     router.push('/')
-                // }
             } catch (err){
                 console.error(err)
             }
@@ -120,13 +117,11 @@ const AuthForm = ({type}: AuthFormProps) => {
                 console.log('User registrado: ', {values})
                 try {
                     const data = await handleCreateUser(values);
-                    console.log('Data final al recibir el formulario:', data)
-                    if(data === `Unexpected token '<', "<!DOCTYPE "... is not valid JSON`){
-                        setErrorForm('Este correo ya está en uso!')
-                    } else if(data === 'fetch failed'){
-                        setErrorForm('Servidor no responde!')
-                    } else {
-                        router.push('/')
+                    if(data === true){
+                        setCreated(true);
+                        setTimeout(() => {
+                            router.push('/login?role=user')
+                        }, 4000)  
                     }
                 } catch (err){
                     console.error(err)
@@ -150,6 +145,13 @@ return (
                         {error}
                     </div>
                 )}
+                { created && (
+                    <div className="w-full mt-6 bg-green-200 p-2 text-center text-green-700">
+                        Usuario creado exitosamente!Serás redireccionado a la página de inicio de sesión....
+                    </div>
+                )
+
+                }
 
                 {(type === 'register' || type === 'register-admin') && (
                     <>

@@ -13,16 +13,10 @@ export const setCookies = async (formData: any) => {
         throw new Error('Servidor no responde!')
     }
 
-    // if(data.message === 'Unauthorized'){
-    //     throw new Error('Credenciales inválidas')
-    // }
 
-    //Destructurar el objeto data para obtener el access_token y expires_at
-    // const { access_token } = data;
-
-    if (data) {
-        const {userId, token, Rol} = data;
+    if (!data.error) {
         try {
+            const {userId, token, Rol} = data;
             cookiesStore.set('token', token, {
                 path: '/',
                 sameSite: 'strict',
@@ -36,13 +30,16 @@ export const setCookies = async (formData: any) => {
             return Rol;
             
         } catch (err) {
-            throw new Error('No se pudo guardar la cookie');
+            throw new Error('Error al guardar las cookies') 
         }
         
+    } else {
+        return {error: data.error}
     }
     // return data;
 
 }
+
 export const deleteCookies = async () => {
     const cookiesStore = cookies();
     try {

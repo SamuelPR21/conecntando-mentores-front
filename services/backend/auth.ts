@@ -12,10 +12,16 @@ export const postLogin = async (values: any) => {
         },
         body: JSON.stringify(values)
       });
-  
+
       const data = await response.json();
-      console.log(data)
-      return data;
+
+      //Si manda un status, es un error de validación o de servidor
+      if(data.status) {
+        return {error: data.status};
+      } else {
+        return data;
+      }
+      
       
     } catch (err: any) {
       console.error(err.message)

@@ -52,7 +52,7 @@ return (
                     <Button variant={'outline'} size={'sm'} >
                         <Link  href={{pathname: '/login', query: {role: 'user'}}}>Iniciar sesion</Link>
                     </Button>
-                    <Link  href={{pathname: '/login', query: {role: 'admin'}}}>Entrar como admin</Link>
+                    {/* <Link  href={{pathname: '/login', query: {role: 'admin'}}}>Entrar como admin</Link> */}
                     
                 </div>
             )}
