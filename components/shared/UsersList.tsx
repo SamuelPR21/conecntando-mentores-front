@@ -16,19 +16,10 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle,
+    DialogClose,
     DialogTrigger,
   } from "@/components/ui/dialog"
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import DeleteUserComponent from './DeleteUserComponent'
 import EditUserForm from './EditUserForm'
 import { getUsers } from '@/services/backend/users'
 import { handleDeleteUser } from '@/actions/users'
@@ -67,7 +58,11 @@ const UsersList = async () => {
                             </DialogTrigger>
                             <DialogContent>
                                 <DialogHeader>
+                                    <DialogClose>
+
+                                    </DialogClose>
                                     <DialogTitle>
+
                                         Editando: {user.username}
                                     </DialogTitle>
                                 </DialogHeader>
@@ -75,26 +70,9 @@ const UsersList = async () => {
                             </DialogContent>
                         </Dialog>
 
-                        <AlertDialog>
-                            <AlertDialogTrigger className='text-xs text-red-500'>Eliminar</AlertDialogTrigger>
-                            <AlertDialogContent>
-                                <AlertDialogHeader>
-                                <AlertDialogTitle>Estas seguro?</AlertDialogTitle>
-                                <AlertDialogDescription>
-                                    Vas a eliminar el usuario: {user.username}
-                                </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                <AlertDialogCancel>
-                                    Cancelar        
-                                </AlertDialogCancel>
-                                <AlertDialogAction>
-                                    Si, eliminar
-                                </AlertDialogAction>
-                                </AlertDialogFooter>
-                            </AlertDialogContent>
-                        </AlertDialog>
-
+                        <DeleteUserComponent 
+                            user={user}
+                        />
                     </div>
             </Card>
         ))}

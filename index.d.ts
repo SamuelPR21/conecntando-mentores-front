@@ -24,3 +24,10 @@ interface EditUserProps {
         user_apellido: string;
     }   
 }
+
+interface DeleteUserProps {
+    user: {
+        user_id: string;
+        username: string;
+    }
+}

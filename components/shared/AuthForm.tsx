@@ -1,6 +1,6 @@
 'use client';
 import React, {useState, useEffect} from 'react'
-import { handleCreateUser, handleLoginUser } from '@/actions/users';
+import { handleCreateAdmin, handleCreateUser, handleLoginUser } from '@/actions/users';
 
 //Shadcn staff for forms
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -55,23 +55,6 @@ const AuthForm = ({type}: AuthFormProps) => {
         defaultValues: defaultValuesAuthForm,
     })
 
-    //Validate if password fields' values are the same
-
-    // const {setError, watch, clearErrors } = form;
-    // const password = watch('password');
-    // const newPassword = watch('newPassword');
-
-    //Watchers
-    // useEffect(() => {
-    //     if (type === 'register' && password !== newPassword) {
-    //       setError('newPassword', {
-    //         type: 'mismatch',
-    //         message: 'Las contraseñas no coinciden',
-    //       });
-    //     } else {
-    //       clearErrors('newPassword');
-    //     }
-    //   }, [password, newPassword, setError, clearErrors, type]);
 
     
     // 2. Define a submit handler.
@@ -110,21 +93,37 @@ const AuthForm = ({type}: AuthFormProps) => {
 
         //HandleSubmit para cuando usuario se registrará
         else {
+            
             // const { password, ...rest} = values;
             if (!Object.values(values).every(value  => value)) {
                 setErrorForm('Todos los campos son requeridos');
             } else {
-                console.log('User registrado: ', {values})
-                try {
-                    const data = await handleCreateUser(values);
-                    if(data === true){
-                        setCreated(true);
-                        setTimeout(() => {
-                            router.push('/login?role=user')
-                        }, 4000)  
+                if(type === 'register' ){
+                    console.log('User registrado: ', {values})
+                    try {
+                        const data = await handleCreateUser(values);
+                        if(data === true){
+                            setCreated(true);
+                            setTimeout(() => {
+                                router.push('/login?role=user')
+                            }, 4000)  
+                        }
+                    } catch (err){
+                        console.error(err)
                     }
-                } catch (err){
-                    console.error(err)
+                } else {
+                    console.log('User registrado: ', {values})
+                    try {
+                        const data = await handleCreateAdmin(values);
+                        if(data === true){
+                            setCreated(true);
+                            setTimeout(() => {
+                                router.push('/login?role=user')
+                            }, 4000)  
+                        }
+                    } catch (err){
+                        console.error(err)
+                    }
                 }
                 form.reset();
             }

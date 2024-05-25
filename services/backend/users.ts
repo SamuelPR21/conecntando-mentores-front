@@ -1,6 +1,25 @@
 import { URL_USERS } from "./urls";
 import { URL_REGISTER } from "./urls";
 
+export const postAdmin = async (formData: any) => {
+    try {
+        const response = await fetch(`${URL_REGISTER}admin`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        const data = await response.text()
+        return data;
+
+    } catch (err: any) {
+        console.error(err.message)
+        return {error: err.message}
+    }
+}
+
+
 export const getUsers = async (token: any) => {
     try{
         const response = await fetch(`${URL_USERS}`, {

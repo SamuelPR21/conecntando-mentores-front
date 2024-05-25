@@ -1,5 +1,5 @@
 'use server'
-import { postUsers, editUser, deleteUser } from "@/services/backend/users"
+import { postUsers, editUser, deleteUser, postAdmin } from "@/services/backend/users"
 import { getUserById } from "@/services/backend/users";
 // import { postLogin } from "@/services/backend/auth"
 import { setCookies } from "@/utils/cookies"
@@ -14,6 +14,7 @@ function valuesFromCookies() {
     // const {id} = userObject;
     return token;
 }
+
 
 
 
@@ -48,6 +49,20 @@ export const handleCreateUser = async (formData: any) => {
         return {error: err.message}
     }
 }
+export const handleCreateAdmin = async (formData: any) => {
+    try {
+        const response = await postAdmin(formData)
+        if(response === 'Creado'){
+            return true;
+        }
+        return response;
+       
+    } catch (err: any) {
+        console.error(err.message)
+        return {error: err.message}
+    }
+
+}
 
 export const handleEditUser = async (formData: any, id: string) => {
     const token = valuesFromCookies();
@@ -64,7 +79,7 @@ export const handleEditUser = async (formData: any, id: string) => {
     }
 }
 
-export const handleDeleteUser = async ( id: string) => {
+export const handleDeleteUser = async (id: string) => {
     const token = valuesFromCookies();
     try {
        const response = await deleteUser(token, id);
