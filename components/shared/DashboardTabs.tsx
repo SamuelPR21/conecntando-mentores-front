@@ -6,7 +6,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from '../ui/button'
 import Trabajos from './Trabajos'
 
-import AddTrabajo from './AddTrabajo'
 
 const DashboardTabs = () => {
   return (

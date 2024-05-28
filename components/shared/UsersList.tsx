@@ -65,7 +65,9 @@ const UsersList = async () => {
                                         Editando: {user.username}
                                     </DialogTitle>
                                 </DialogHeader>
+
                                 <EditUserForm data={user} />
+                            
                             </DialogContent>
                         </Dialog>
 

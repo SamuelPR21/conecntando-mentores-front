@@ -4,7 +4,6 @@ import UsersList from './UsersList'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Link from 'next/link'
 import { Button } from '../ui/button'
-import AddTrabajo from './AddTrabajo'
 
 
 const AdminTabs = () => {
@@ -23,16 +22,13 @@ const AdminTabs = () => {
         >
           Lista de usuarios
         </h1>
-        {/* <Link
-          href='/trabajos'>
-            <Button
-            variant={'outline'}
-            className='bg-transparent '
-            >Buscar +</Button>
-        </Link> */}
           
         </header>
+
+
         <UsersList />
+
+        
       </TabsContent> 
       <TabsContent value="trabajos">
        
@@ -44,7 +40,9 @@ const AdminTabs = () => {
           </h1>
             
           </header>
+
           <Trabajos />
+    
       </TabsContent>
       <TabsContent value="upload">
        

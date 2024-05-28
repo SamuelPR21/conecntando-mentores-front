@@ -41,7 +41,7 @@ export const authFormSchema = z.object({
 //The form
 
 const AuthForm = ({type}: AuthFormProps) => {
-    console.log(type)
+    //Estados de React
     const [error, setErrorForm] = useState('')
     const [disabled, setDisabled] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -63,7 +63,8 @@ const AuthForm = ({type}: AuthFormProps) => {
         setLoading(true)
         //HandleSubmit para cuando usuario se logueará
         if(type === 'login' || type === 'login-admin') {
-            if (!Object.values(values).every(value  => value)) {
+            const {user_name, user_apellido, ...rest} = values;
+            if (!Object.values(rest).every(value  => value)) {
                 setErrorForm('Todos los campos son requeridos');
                 setLoading(false)
                 setDisabled(false)
@@ -120,7 +121,9 @@ const AuthForm = ({type}: AuthFormProps) => {
                             setTimeout(() => {
                                 router.push('/login?role=user')
                             }, 4000)  
-                        }
+                        } else {
+                            console.log("Error en el response:", data)
+                        }   
                     } catch (err){
                         console.error(err)
                     }

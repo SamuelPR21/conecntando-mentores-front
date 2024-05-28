@@ -11,51 +11,15 @@ const Footer = () => {
                         <p>&copy;Samuel Perdomo</p>
                     </div>
                     <div className="grid grid-cols-2 w-full md:grid-cols-3 gap-4 ">
-                        <div>
-                            <h3 className="font-bold">Análisis</h3>
-                            <ul>
-                                <li>
-                                    <Link href='#'>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href='#'>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href='#'>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href='#'>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
                     
                         
-                        <div>
-                            <h3 className="font-bold">Nosotros</h3>
-                            <ul>
-                                <li>
-                                    <Link href='#'>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href='#'>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href='#'>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
+                       
                         <div>
                             <h3 className="font-bold">Contacto</h3>
                             <ul>
                                 <li>
-                                    <Link href='#'>
+                                    <Link href='https://www.instagram.com/el_samu_21_/'>
+                                        Instagram 
                                     </Link>
                                 </li>
                                 <li>

@@ -42,6 +42,7 @@ return (
                 </div>
             ) : location === 'admin' ? (
                 <div className='gap-4 items-center flex ml-32'>
+                    <LogoutButton />
                     <p>Admin</p>
                 </div>
             ):(
@@ -57,7 +58,7 @@ return (
                 </div>
             )}
             {
-                (location === 'profile' || location === 'admin') && (
+                (location === 'profile') && (
                     <Sheet>
                         <SheetTrigger>
                             <svg
@@ -94,7 +95,7 @@ return (
                                                 </li>
                                             </>
                                         )}
-                                         {location === 'admin' && (
+                                         {/* {location === 'admin' && (
                                             <>
                                                 <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
                                                     <Link href='/imadmin/profile'>Perfil</Link>
@@ -103,7 +104,7 @@ return (
                                                     <Link href='/imadmin'>Lista de datos</Link>
                                                 </li>
                                             </>
-                                        )}
+                                        )} */}
                                        
                                         {/* <li className='hover:bg-card p-3 rounded-full cursor-pointer'>
                                             <Link href='/profile/trabajos/nuevo'>Nosotros</Link>

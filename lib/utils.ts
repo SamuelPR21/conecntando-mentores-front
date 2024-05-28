@@ -6,16 +6,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const defaultValuesAuthForm = {
-  name: '',
-  semestre: '',
-  email: '',
+  user_name: '',
+  username: '',
+  user_apellido: '',
   password: '',
-  newPassword: '',
-}
-
-export const defaultValuesUploadForm = {
-  title: '',
-  date: '',
-  content: '',
-  materia: '',
 }

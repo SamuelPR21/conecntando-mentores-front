@@ -12,7 +12,9 @@ interface RegisterProps {
 const Register = ({searchParams}: RegisterProps) => {
     
     const role = searchParams?.role;
-  return (
+  
+  
+    return (
         <>
             <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold mb-3 text-center">
                 Registro

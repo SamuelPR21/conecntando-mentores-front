@@ -12,7 +12,6 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { handleDeleteUser } from "@/actions/users"
-import { X } from "lucide-react";
 
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";

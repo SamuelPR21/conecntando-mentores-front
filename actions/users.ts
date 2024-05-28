@@ -9,9 +9,6 @@ import { cookies } from "next/headers";
 function valuesFromCookies() {
     const cookiesStore = cookies();
     const token = cookiesStore.get('token')?.value as string;
-    // const userString = cookiesStore.get('user')?.value;
-    // const userObject = userString ? JSON.parse(userString) : {id: 2};
-    // const {id} = userObject;
     return token;
 }
 
@@ -35,7 +32,6 @@ export const handleLoginUser = async (formData: any) => {
 }
 
 //Metodos de register
-
 export const handleCreateUser = async (formData: any) => {
     try {
         const response = await postUsers(formData)
@@ -52,7 +48,7 @@ export const handleCreateUser = async (formData: any) => {
 export const handleCreateAdmin = async (formData: any) => {
     try {
         const response = await postAdmin(formData)
-        if(response === 'Creado'){
+        if(response === 'User registered successfully!'){
             return true;
         }
         return response;

@@ -12,6 +12,7 @@ interface LoginProps {
 
 const Login = ({searchParams}: LoginProps) => {
     const role = searchParams?.role;
+    console.log(role)
     
   return (
 
@@ -25,19 +26,15 @@ const Login = ({searchParams}: LoginProps) => {
             
 
             
-            {role !== 'admin' ?
-                <>
+            
                     <p className="text-center text-white">Entra a tu mundo de ayuda para las</p>
                     <p className="text-center text-white">tareas de la universidad</p>
+                    
                     <AuthForm 
                         type='login'
                     />
-                </>
-            : 
-                <AuthForm
-                    type='login-admin'
-                />
-            }
+                
+            
             
             
             <div className="text-center mt-5">
@@ -46,21 +43,14 @@ const Login = ({searchParams}: LoginProps) => {
                   ¿Olvidaste tu contraseña?
                 </Link>
               </p> */}
-              {role !== 'admin' ? (
+              {role !== 'admin' && (
                   <p>
                   ¿No tienes cuenta?{" "}
                   <Link href={{pathname: '/register', query: {role: 'user'}}} className='underline'>
                     Registrate
                   </Link>
                 </p>
-              ): 
-                <p>
-                  No soy admin. {" "}
-                  <Link href={{pathname: '/register', query: {role: 'user'}}} className='underline'>
-                    Registrate como usuario
-                  </Link>
-                </p>
-              }
+              )}
               
               
             </div>
